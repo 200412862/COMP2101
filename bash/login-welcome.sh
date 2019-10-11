@@ -13,7 +13,6 @@
 # Variables   #
 ###############
 title="Overlord"
-#myname="dennis"
 myname=$USER
 hostname=$(hostname)
 time=$(date +"%H:%M %p")
@@ -24,7 +23,7 @@ day=$(date +%a)
 ###############
 #cat <<EOF
 
-outputMessage="Welcome to planet $hostname, $title $myname! It is $time on $day"
-cowsay "$outputMessage"
+finalMsg="Welcome to planet $hostname, $title $myname! It is $time on $day"
+cowsay "$finalMsg"
 
 #EOF
