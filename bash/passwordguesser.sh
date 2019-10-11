@@ -7,6 +7,20 @@
 #           *** Do not use the exit command
 
 myString="TestString"
-referenceString="password"
-
-[ $myString = $referenceString ] && echo "You guessed the password!" || echo "The password eludes you..."
+#referenceString="password"
+#[ $myString = $referenceString ] && echo "You guessed the password!" || echo "The password eludes you..."
+totalTries=3
+echo "Please guess the password"
+while [ $totalTries -ge 1 ] && [ $totalTries -le 3 ]
+do
+read password
+if [ $myString = $password ]
+then
+  echo "you have guessed the correct password."
+break
+elif [ $myString != $password ]
+then
+  echo "password incorrect please try again."
+fi
+totalTries=$[$totalTries -1]
+done
