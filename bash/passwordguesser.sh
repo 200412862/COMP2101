@@ -8,7 +8,7 @@
 
 myString="adarsh"
 #my password
-totalAttempts=0
+totalAttempts=1
 #variable assigned three attempts
 echo "Please guess the password"
 #asking user to enter password

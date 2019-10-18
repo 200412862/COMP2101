@@ -40,7 +40,7 @@ ExternalName=$(getent hosts $(curl -s icanhazip.com) | awk '{print $2}')
 RouterAddress=$(ip route show | grep -i 'default via'| awk '{print $3 }')
 RouterName=$(head -n 1 /etc/hosts | awk '{print $2}')
 NetworkAddress=$(tail -n 1 /etc/networks | awk '{print $2}')
-NetworkName=$(tail -n 1  /etc/networks | awk '{print $1}')
+NetworkName=$(getent networks $NetworkAddress | awk '{print $1}')
 
 #EOF
 cat <<EOF
