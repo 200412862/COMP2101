@@ -9,21 +9,33 @@
 
 # Task: Explain in a comment how the line with the word moose in it works.
 
+trap StartAgain SIGINT
+trap Surprise SIGQUIT
+
 #### Variables
-programName="$(basename $0)"
-# used by error_functions.sh
-sleepTime=1
-# delay used by sleeptime
-numberOfSleeps=10
-# how many sleeps to wait for before quitting for inactivity
+programName="$(basename $0)" # used by error_functions.sh
+sleepTime=1 # delay used by sleeptime
+numberOfSleeps=10 # how many sleeps to wait for before quitting for inactivity
 
 #### Functions
+function StartAgain {
+  echo "you can not interrupt the count"
+  sleepCount=$numberOfSleeps+1
+}
+
+function Surprise {
+  echo "Yeah man,you found the way to exit the loop"
+  exit
+}
 
 # This function will send an error message to stderr
 # Usage:
 #   error-message ["some text to print to stderr"]
 #
 function error-message {
+
+        #here it will print out the programname with first command line argument and moose printing statment
+        #after that >&2 will send the output of echo to standard error instead of standard output.D
         echo "${programName}: ${1:-Unknown Error - a moose bit my sister once...}" >&2
 }
 
@@ -35,6 +47,7 @@ function error-exit {
         error-message "$1"
         exit "${2:-1}"
 }
+
 function usage {
         cat <<EOF
 Usage: ${programName} [-h|--help ] [-w|--waittime waittime] [-n|--waitcount waitcount]
@@ -81,4 +94,4 @@ while [ $sleepCount -gt 0 ]; do
     sleep $sleepTime
     sleepCount=$((sleepCount - 1))
 done
-echo "Wait counter expired, exiting now"
+echo "Wait counter expired, exiting peacefully"
